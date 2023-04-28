@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mapper DTD 선언 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+<mapper namespace="com.test.controller.mappers.ProductMapper">
+	<delete id="deleteOne" parameterType="int">
+		delete from basket where pnumber = #{pnumber}
+	</delete>
+
+	<select id="selectAllBasket" resultType="com.test.controller.BasketDTO">
+		select distinct pnumber, pname, pprice from basket order by pnumber
+	</select>
+
+	<insert id="insertBasket" parameterType="com.test.controller.BasketDTO">
+		insert into basket values(
+			#{pnumber}, #{pname}, #{pprice}
+		)
+	</insert>
+
+	<select id="selectOne" parameterType="int" resultType="com.test.controller.ProductDTO">
+		select * from product where pnumber = #{pnumber}
+	</select>
+	
+	<select id="selectAll" resultType="com.test.controller.ProductDTO" >
+		select * from product
+	</select>
+</mapper>
